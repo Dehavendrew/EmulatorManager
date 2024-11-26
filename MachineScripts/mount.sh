@@ -17,5 +17,6 @@ fi
 
 
 for ((i=0; i < NUM_TERMINALS ; i++)) ; do
-    tmux send-keys -t $i "sudo reboot" ENTER
+    tmux send-keys -t $i "sudo mkdir /mnt/share" ENTER
+    tmux send-keys -t $i "sudo mount -t 9p -o trans=virtio,version=9p2000.L host0 /mnt/share" ENTER
 done

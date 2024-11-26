@@ -17,5 +17,5 @@ fi
 
 
 for ((i=0; i < NUM_TERMINALS ; i++)) ; do
-    tmux send-keys -t $i "sudo reboot" ENTER
+    tmux send-keys -t $i "" C-c
 done

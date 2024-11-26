@@ -1,8 +1,12 @@
+#!/bin/bash
+
 MAX_TERMINALS=20
 NUM_TERMINALS=1
 SESSION=emulator_manager
-USER=root
-PASSWORD=root
+PANES=$(tmux list-panes | wc -l)
+IMAGE_PATH=/home/drew/EmulatorMachine/Images
+BASE_IMAGE=Phoenix
+GOLDEN_PATH=/home/drew/EmulatorMachine/Images/GoldenCopies
 
 while getopts ":n:" flag;do
     if [ $flag == "n" ]; then
@@ -15,7 +19,15 @@ if [ $NUM_TERMINALS -gt $MAX_TERMINALS ]; then
     NUM_TERMINALS=$MAX_TERMINALS;
 fi
 
+bash ./clear_terminals.sh
 
 for ((i=0; i < NUM_TERMINALS ; i++)) ; do
-    tmux send-keys -t $i "sudo reboot" ENTER
+    sleep 1
+    tmux send-keys -t $i "echo $i" ENTER
 done
+
+for ((i=0; i < NUM_TERMINALS ; i++)) ; do
+    sleep 1
+    tmux send-keys -t $i "clear" ENTER
+done
+

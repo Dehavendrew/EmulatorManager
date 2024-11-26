@@ -39,6 +39,3 @@ done
 
 tmux select-layout tiled
 
-tmux attach -t $SESSION
-
-

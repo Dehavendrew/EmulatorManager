@@ -17,5 +17,9 @@ fi
 
 
 for ((i=0; i < NUM_TERMINALS ; i++)) ; do
-    tmux send-keys -t $i "sudo shutdown now" ENTER
+    tmux send-keys -t $i "hostname" ENTER
+    sleep 0.2
+    if [ $(tmux capture-pane -pt $i -S -10 | tail -n 2 | grep -c "DBox") == 0 ]; then
+        tmux send-keys -t $i "sudo shutdown now" ENTER
+    fi
 done
